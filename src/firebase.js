@@ -4,13 +4,12 @@ import { getFirestore } from "firebase/firestore"
 
 // Tu configuración personal de Firebase
 const firebaseConfig = {
-  apiKey: "AIzaSyA3QrOPNGeOO1VJ9P_c41jkh--z6MCtGvQ",
-  authDomain: "hercules-petshop.firebaseapp.com",
-  projectId: "hercules-petshop",
-  storageBucket: "hercules-petshop.firebasestorage.app",
-  messagingSenderId: "504064026899",
-  appId: "1:504064026899:web:43925beeb8e32e464e92e6",
-  measurementId: "G-FP23RW7LMY"
+  apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
+  authDomain: import.meta.env.VITE_FIREBASE_AUTH_DOMAIN,
+  projectId: import.meta.env.VITE_FIREBASE_PROJECT_ID,
+  storageBucket: import.meta.env.VITE_FIREBASE_STORAGE_BUCKET,
+  messagingSenderId: import.meta.env.VITE_FIREBASE_MESSAGING_SENDER_ID,
+  appId: import.meta.env.VITE_FIREBASE_APP_ID
 }
 
 // Inicializamos Firebase
