@@ -1,11 +1,13 @@
 import { useState, useEffect } from 'react'
 import './App.css'
 import {db} from './firebase.js'
+import { Routes, Route } from 'react-router-dom'
 import { collection, getDocs } from 'firebase/firestore'
 import Header from './components/Header.jsx'
 import Carrito from './components/Carrito.jsx'
 import Producto from './components/Producto.jsx'
 import Footer from './components/Footer.jsx'
+import Catalogo from './components/Catalogo.jsx'
 
 function App() {
 
@@ -24,6 +26,7 @@ function App() {
         ...doc.data(),
         img:doc.data().imagen
       }))
+      console.log('productos de firebase:', productos)
       setListaDeProductos(productos)
     })
   }, [])
@@ -65,17 +68,15 @@ function App() {
         busqueda={busqueda}
         setBusqueda={setBusqueda}
       />
-      <div className="contenedor-Productos">
-        {productosFiltrados.map((prod) => (
-          <Producto
-            key={prod.id}
-            img={prod.img}
-            titulo={prod.titulo}
-            precio={prod.precio}
-            agregarAlCarrito={() => agregarAlCarrito(prod)}
-          />
-        ))}
-      </div>
+
+      <Routes>
+        <Route path="/" element={
+          <Catalogo
+          productos={productosFiltrados}
+          agregarAlCarrito={agregarAlCarrito}
+          />} /> 
+      </Routes>
+
       <Carrito
         carrito={carrito}
         totalAPagar={total}
