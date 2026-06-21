@@ -1,0 +1,30 @@
+.featured-products {
+    padding: 40x 24px;
+}
+
+.featured-products-titulo {
+    font-family: 'Nunito' sans-serif;
+    font-weight: 800;
+    font-size: 22px;
+    color: #1b4332;
+    margin-top: 4px;
+}
+
+.featured-products-subtitulo {
+    font-size: 13px;
+    color: #666;
+    margin-bottom: 24px;
+}
+
+.featured-products-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+    gap: 16px;
+}
+
+.featured-products-vacio {
+    text-align: center;
+    padding: 60px 0;
+    color: #888;
+    font-size: 15px;
+}

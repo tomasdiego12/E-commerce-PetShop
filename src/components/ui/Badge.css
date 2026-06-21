@@ -1,0 +1,23 @@
+.badge {
+  display: inline-block;
+  font-size: 10px;
+  font-weight: 800;
+  font-family: 'Nunito', sans-serif;
+  padding: 2px 8px;
+  border-radius: 12px;
+}
+
+.badge--descuento {
+  background: #FF6B35;
+  color: #fff;
+}
+
+.badge--nuevo {
+  background: #2D6A4F;
+  color: #fff;
+}
+
+.badge--oferta {
+  background: #FFD166;
+  color: #7A4500;
+}

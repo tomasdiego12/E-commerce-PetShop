@@ -1,0 +1,43 @@
+.trust-badges {
+    background: #fff;
+    border-top: 1px solid #eee;
+    border-bottom: 1px solid #eee;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+}
+
+.trust-badges-item {
+    padding: 28px 20px;
+    text-align: center;
+    border-right: 1px solid #eee;
+}
+
+.trust-badges-item:last-child {
+    border-right: none;
+}
+
+.trust-badges-icono {
+    width: 52px;
+    height: 52px;
+    border-radius: 50%;
+    background: #D8F3DC;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 12px;
+    font-size: 22px;
+}
+
+.trust-badges-item h4 {
+    font-family: 'Nunito', sans-serif;
+    font-weight: 800;
+    font-size: 14px;
+    color: #1B4332;
+    margin-bottom: 4px;
+}
+
+.trust-badges-item p {
+    font-size: 12px;
+    color: #777;
+    line-height: 1.4;
+}

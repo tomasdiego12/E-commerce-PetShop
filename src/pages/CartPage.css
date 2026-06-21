@@ -1,0 +1,41 @@
+.cart-page {
+  padding: 24px;
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+.cart-page-title {
+  font-family: 'Nunito', sans-serif;
+  font-weight: 800;
+  color: #1B4332;
+  margin-bottom: 20px;
+}
+
+.cart-items-container {
+  margin-bottom: 16px;
+}
+
+.cart-page-vacio {
+  padding: 80px 24px;
+  text-align: center;
+}
+
+.cart-page-vacio-emoji {
+  font-size: 40px;
+  margin-bottom: 12px;
+}
+
+.cart-page-vacio-texto {
+  font-weight: 600;
+  margin-bottom: 16px;
+}
+
+.cart-page-vacio-link {
+  color: #2D6A4F;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.cart-page-vacio-link:hover {
+  text-decoration: underline;
+}

@@ -1,0 +1,17 @@
+.account-page {
+  max-width: 480px;
+  margin: 60px auto;
+  padding: 0 24px;
+}
+
+.account-titulo {
+  font-family: 'Nunito', sans-serif;
+  font-weight: 800;
+  color: #1B4332;
+  margin-bottom: 8px;
+}
+
+.account-email {
+  color: #666;
+  margin-bottom: 24px;
+}

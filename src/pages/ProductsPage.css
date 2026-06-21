@@ -1,0 +1,12 @@
+.products-page {
+    padding: 24px;
+    max-Width: 1200px;
+    margin: 0 auto;
+}
+
+products-page-title {
+    font-Family: 'Nunito', sans-serif;
+    font-Weight: 800;
+    color: #1B4332;
+    margin-Bottom: 8px;
+}

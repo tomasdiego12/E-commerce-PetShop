@@ -1,0 +1,105 @@
+.hero-banner {
+    background: linear-gradient(135deg, #D8F3DC 0%, #95D5B2 100%);
+    padding: 48px 24px;
+    display: flex;
+    align-items: center;
+    gap: 32px;
+    min-height: 300px;
+}
+
+.hero-banner-badge {
+    display: inline-flex;
+    background: #ff6b35;
+    color: #fff;
+    font-size: 11px;
+    font-weight: 700;
+    font-family: 'Nunito', sans-serif;
+    padding: 4px 12px;
+    border-radius: 20px;
+    margin-bottom: 16px;
+}
+
+.hero-banner-texto h1 {
+    font-family: 'Nunito', sans-serif;
+    font-weight: 900;
+    font-size: 32px;
+    line-height: 1.15;
+    color: #1b4332;
+    margin-bottom: 12px;
+}
+
+.hero-banner-texto h1 span {
+    color: #ff6b35;
+}
+
+.hero-banner-texto p {
+    font-size: 14px;
+    color: #2d6a4f;
+    margin-bottom: 20px;
+    max-width: 380px;
+}
+
+.hero-banner-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: #FF6B35;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 28px;
+    padding: 13px 26px;
+    font-size: 14px;
+    font-weight: 700;
+    font-family: 'Nunito', sans-serif;
+    transition: background 0.2s;
+}
+
+.hero-banner-cta:hover {
+    background: #C94A1A;
+}
+
+.hero-banner-visual {
+    flex-shrink: 0;
+    width: 260px;
+    height: 260px;
+    border-radius: 50%;
+    background: rgba(45, 106, 79, 0.25);
+    overflow: hidden;          /* ← agregá esta línea */
+    box-shadow: 0 8px 30px rgba(45, 106, 79, 0.25);  /* ← opcional, le da profundidad */
+}
+
+.hero-banner-visual img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Sombra más oscura para que se note contra el fondo verde claro */
+.hero-banner-visual {
+  box-shadow: 0 12px 32px rgba(27, 67, 50, 0.3);
+}
+
+/* Micro-stats debajo del CTA */
+.hero-banner-stats {
+  display: flex;
+  gap: 24px;
+  margin-top: 28px;
+}
+
+.hero-banner-stat {
+  display: flex;
+  flex-direction: column;
+}
+
+.hero-banner-stat strong {
+  font-family: 'Nunito', sans-serif;
+  font-weight: 900;
+  font-size: 20px;
+  color: #1B4332;
+}
+
+.hero-banner-stat span {
+  font-size: 11px;
+  color: #40916C;
+  font-weight: 600;
+}

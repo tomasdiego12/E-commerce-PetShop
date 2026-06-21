@@ -1,0 +1,33 @@
+.category-nav {
+  background: #2D6A4F;
+  display: flex;
+  gap: 0;
+  padding: 0 24px;
+  overflow-x: auto;
+}
+
+.category-nav-item {
+  padding: 10px 18px;
+  font-size: 13px;
+  font-weight: 600;
+  font-family: 'Nunito', sans-serif;
+  color: rgba(255, 255, 255, 0.85);
+  cursor: pointer;
+  border: none;
+  border-bottom: 3px solid transparent;
+  background: none;
+  transition: all 0.2s;
+  white-space: nowrap;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.category-nav-item:hover {
+  color: #FFD166;
+}
+
+.category-nav-item--active {
+  color: #FFD166;
+  border-bottom-color: #FFD166;
+}

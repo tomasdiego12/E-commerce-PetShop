@@ -1,0 +1,24 @@
+.product-grid {
+  display: grid;
+  /* auto-fill + minmax = grilla responsive sin media queries.
+     Cada columna mide mínimo 160px; si entran más, se acomodan solas. */
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  gap: 16px;
+}
+
+.product-grid-vacio {
+  text-align: center;
+  padding: 80px 20px;
+  color: #888;
+}
+
+.product-grid-vacio p {
+  font-size: 16px;
+  font-weight: 600;
+  margin-bottom: 6px;
+}
+
+.product-grid-vacio span {
+  font-size: 13px;
+  color: #aaa;
+}

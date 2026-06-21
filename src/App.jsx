@@ -1,90 +1,67 @@
-import { useState, useEffect } from 'react'
-import './App.css'
-import {db} from './firebase.js'
+/**
+ * App.jsx
+ * ------------------------------------------------------------------
+ * Responsabilidad única: definir las rutas. Toda la lógica de negocio
+ * (productos, búsqueda, carrito) vive en hooks; toda la presentación
+ * vive en pages/ y components/. App.jsx es el "mapa", no el contenido.
+ */
 import { Routes, Route } from 'react-router-dom'
-import { collection, getDocs } from 'firebase/firestore'
-import Header from './components/Header.jsx'
-import Carrito from './components/Carrito.jsx'
-import Producto from './components/Producto.jsx'
-import Footer from './components/Footer.jsx'
-import Catalogo from './components/Catalogo.jsx'
+import Layout from './components/layout/Layout'
+import Toast from './components/ui/Toast'
+import CartDrawer from './components/cart/CartDrawer'
+import useSearch from './hooks/useSearch'
+import useProducts from './hooks/useProducts'
+
+import HomePage from './pages/HomePage'
+import ProductsPage from './pages/ProductsPage'
+import ProductDetailPage from './pages/ProductDetailPage'
+import CartPage from './pages/CartPage'
+import CheckoutPage from './pages/CheckoutPage'
+import LoginPage from './pages/LoginPage'
+import RegisterPage from './pages/RegisterPage'
+import AccountPage from './pages/AccountPage'
+import NotFoundPage from './pages/NotFoundPage'
 
 function App() {
+  // Se traen UNA vez acá arriba y se reparten por props a las páginas
+  // que los necesitan — evita pedirle a Firebase los mismos productos
+  // de nuevo cada vez que cambia de ruta.
+  const { productos, cargando } = useProducts()
+  const {
+    busqueda,
+    setBusqueda,
+    categoriaActiva,
+    setCategoriaActiva,
+    productosFiltrados,
+  } = useSearch(productos)
 
-  // ── 1. ESTADOS ──
-  const [listaDeProductos, setListaDeProductos] = useState([])
-  const [carrito, setCarrito] = useState([])
-  const [busqueda, setBusqueda] = useState('')
-
-  // ── 2. EFECTO (trae los productos de la API) ──
-  useEffect (() => {
-    const productosRef = collection(db, 'productos')
-    getDocs(productosRef)
-    .then(snapshot => {
-      const productos = snapshot.docs.map(doc => ({
-        id: doc.id,
-        ...doc.data(),
-        img:doc.data().imagen
-      }))
-      console.log('productos de firebase:', productos)
-      setListaDeProductos(productos)
-    })
-  }, [])
-
-  // ── 3. VARIABLES DERIVADAS ──
-  const productosFiltrados = listaDeProductos.filter(p =>
-    p.titulo.toLowerCase().includes(busqueda.toLowerCase())
-  )
-  const total = carrito.reduce((acumulador, item) => acumulador + item.precio * item.cantidad, 0)
-  const totalItems = carrito.reduce((acumulador, item) => acumulador + item.cantidad, 0)
-
-  // ── 4. FUNCIONES ──
-  const agregarAlCarrito = (productoClickeado) => {
-    const indiceEncontrado = carrito.findIndex(item => item.id === productoClickeado.id)
-    if (indiceEncontrado === -1) {
-      setCarrito([...carrito, { ...productoClickeado, cantidad: 1 }])
-    } else {
-      const copiaCarrito = [...carrito]
-      copiaCarrito[indiceEncontrado].cantidad += 1
-      setCarrito(copiaCarrito)
-    }
-  }
-
-  const eliminarProducto = (indice) => {
-    const nuevoCarrito = carrito.filter((item, i) => i !== indice)
-    setCarrito(nuevoCarrito)
-  }
-
-  const finalizarCompra = () => {
-    alert(`Gracias por tu compra! Total a pagar: $${total}`)
-    setCarrito([])
-  }
-
-  // ── 5. RENDERIZADO ──
   return (
-    <div>
-      <Header
-        totalItems={totalItems}
+    <>
+      {/* Elementos que flotan SOBRE el layout, no dentro del flujo normal */}
+      <Toast />
+      <CartDrawer />
+
+      <Layout
         busqueda={busqueda}
         setBusqueda={setBusqueda}
-      />
-
-      <Routes>
-        <Route path="/" element={
-          <Catalogo
-          productos={productosFiltrados}
-          agregarAlCarrito={agregarAlCarrito}
-          />} /> 
-      </Routes>
-
-      <Carrito
-        carrito={carrito}
-        totalAPagar={total}
-        eliminarProducto={eliminarProducto}
-        finalizarCompra={finalizarCompra}
-      />
-      <Footer />
-    </div>
+        categoriaActiva={categoriaActiva}
+        setCategoriaActiva={setCategoriaActiva}
+      >
+        <Routes>
+          <Route path="/" element={<HomePage productos={productosFiltrados} cargando={cargando} />} />
+          <Route path="/productos" element={<ProductsPage productos={productos} cargando={cargando} />} />
+          <Route path="/producto/:id" element={<ProductDetailPage />} />
+          <Route path="/carrito" element={<CartPage />} />
+          <Route path="/checkout" element={<CheckoutPage />} />
+          <Route path="/login" element={<LoginPage />} />
+          <Route path="/registro" element={<RegisterPage />} />
+          <Route path="/cuenta" element={<AccountPage />} />
+          {/* path="*" captura cualquier ruta no definida arriba — SIEMPRE
+              tiene que ir último, React Router evalúa las rutas en orden */}
+          <Route path="*" element={<NotFoundPage />} />
+        </Routes>
+      </Layout>
+    </>
   )
 }
 
